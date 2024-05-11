@@ -1,4 +1,7 @@
 from dataclasses import dataclass
+import logging
+logger = logging.getLogger(__name__)
+from llama_index.core.memory import ChatMemoryBuffer
 
 from injector import inject, singleton
 from llama_index.core.chat_engine import ContextChatEngine, SimpleChatEngine
@@ -113,6 +116,16 @@ class ChatService:
                 index=self.index,
                 context_filter=context_filter,
                 similarity_top_k=self.settings.rag.similarity_top_k,
+            )
+            memory = ChatMemoryBuffer.from_defaults(token_limit=29999999)  # <-- MORE TOKENS
+            return ContextChatEngine.from_defaults(
+                system_prompt=system_prompt,
+                retriever=vector_index_retriever,
+                memory=memory,  #  <-- USE THE  LARGER BUFFER
+                llm=self.llm_component.llm,
+                node_postprocessors=[
+                    MetadataReplacementPostProcessor(target_metadata_key="window"),
+                ],
             )
             node_postprocessors = [
                 MetadataReplacementPostProcessor(target_metadata_key="window"),

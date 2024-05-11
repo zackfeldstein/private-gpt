@@ -5,7 +5,7 @@ server:
   env_name: ${APP_ENV:prod}
   port: ${PORT:8001}
   cors:
-    enabled: true
+    enabled: false
     allow_origins: ["*"]
     allow_methods: ["*"]
     allow_headers: ["*"]
@@ -38,8 +38,8 @@ llm:
   mode: llamacpp
   prompt_style: "mistral"
   # Should be matching the selected model
-  max_new_tokens: 512
-  context_window: 3900
+  max_new_tokens: 3000
+  context_window: 8000
   tokenizer: mistralai/Mistral-7B-Instruct-v0.2
   temperature: 0.1      # The temperature of the model. Increasing the temperature will make the model answer more creatively. A value of 0.1 would be more factual. (Default: 0.1)
 
