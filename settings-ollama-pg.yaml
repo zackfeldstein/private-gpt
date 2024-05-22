@@ -29,6 +29,6 @@ postgres:
   port: 5432
   database: postgres
   user: postgres
-  password: admin
+  password: password
   schema_name: private_gpt
 

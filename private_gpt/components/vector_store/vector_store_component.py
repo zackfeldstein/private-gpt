@@ -118,7 +118,7 @@ class VectorStoreComponent:
                     VectorStore,
                     QdrantVectorStore(
                         client=client,
-                        collection_name="make_this_parameterizable_per_api_call",
+                        collection_name="private_gpt",
                     ),  # TODO
                 )
             case _:

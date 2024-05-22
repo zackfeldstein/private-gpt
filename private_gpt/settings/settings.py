@@ -185,7 +185,7 @@ class EmbeddingSettings(BaseModel):
         ),
     )
     embed_dim: int = Field(
-        384,
+        768,
         description="The dimension of the embeddings stored in the Postgres database",
     )
 
@@ -204,10 +204,6 @@ class OpenAISettings(BaseModel):
     model: str = Field(
         "gpt-3.5-turbo",
         description="OpenAI Model to use. Example: 'gpt-4'.",
-    )
-    request_timeout: float = Field(
-        120.0,
-        description="Time elapsed until openailike server times out the request. Default is 120s. Format is float. ",
     )
 
 

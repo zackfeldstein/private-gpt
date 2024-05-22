@@ -48,6 +48,10 @@ sentence-transformers = {version ="^2.6.1", optional = true}
 gradio = {version ="^4.19.2", optional = true}
 
 [tool.poetry.extras]
+#vector-stores-postgres = ["vector-stores-postgres"]
+sqlalchemy = ["sqlalchemy"]
+asyncpg    = ["asyncpg"]
+psycopg2-binary = ["psycopg2-binary"]
 ui = ["gradio"]
 llms-llama-cpp = ["llama-index-llms-llama-cpp"]
 llms-openai = ["llama-index-llms-openai"]
@@ -75,6 +79,7 @@ pytest-cov = "^3"
 ruff = "^0"
 pytest-asyncio = "^0.21.1"
 types-pyyaml = "^6.0.12.12"
+qdrant-client = "^1.9.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
