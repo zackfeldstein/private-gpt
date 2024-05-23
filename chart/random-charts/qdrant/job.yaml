@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-qdrant-collection
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: init-collection
+        image: curlimages/curl:latest
+        command:
+          - sh
+          - -c
+          - >
+            until curl -s -o /dev/null -w "%{http_code}" -X PUT http://qdrant.default.svc.cluster.local:6333/collections/private_gpt -H "Content-Type: application/json" -d '{ "vectors": {"size": 768, "distance": "Cosine"}}' | grep -q "20[0-9]"; do
+              echo "waiting for qdrant to be ready";
+              sleep 2;
+            done;
+            echo "Collection created successfully.";
+      restartPolicy: Never
+  backoffLimit: 4
+

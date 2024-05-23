@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "private-gpt.fullname" . }}
+  labels:
+    {{- include "private-gpt.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 8001
+      nodePort: {{ .Values.service.nodePort }}
+  selector:
+    {{- include "private-gpt.selectorLabels" . | nindent 4 }}

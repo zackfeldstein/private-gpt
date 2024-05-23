@@ -1,0 +1,24 @@
+global:
+  postgresql:
+    auth:
+      postgresPassword: password  # Change this to a secure password
+      username: postgres  # Change this to your desired username
+      password: password  # Change this to your desired database password
+      database: private_gpt  # Database to be created
+image:
+  registry: docker.io
+  repository: zfeldstein/postgres-pg-vector2
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: NodePort
+  nodePorts:
+    postgresql: 32000  # NodePort you want to use
+replicaCount: 1
+primary:
+  resourcesPreset: "nano"
+  initdbScripts:
+    create_pgvector_extension.sql: |
+      CREATE EXTENSION IF NOT EXISTS vector;
+replication:
+  enabled: false

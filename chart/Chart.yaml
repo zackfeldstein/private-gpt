@@ -1,0 +1,7 @@
+apiVersion: v2
+name: private-gpt
+description: A Helm chart for Kubernetes to deploy the private-gpt application
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
