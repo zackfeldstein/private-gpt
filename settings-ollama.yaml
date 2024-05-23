@@ -25,7 +25,7 @@ ollama:
   request_timeout: 120.0  # Time elapsed until ollama times out the request. Default is 120s. Format is float.
 
 vectorstore:
-  database: qdrant
+  database: postgres
 
 qdrant:
   #path: local_data/private_gpt/qdrant
